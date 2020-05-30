@@ -1,0 +1,283 @@
+// FIX csss
+
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  font-size: 18px;
+  font-family: Rubik;
+  box-sizing: border-box;
+}
+
+// HERO SECTION STYLING
+.art-container-1 .art-container-2 {
+  position: relative;
+  height: 20rem;
+
+  margin-right: 0px;
+}
+
+.btn-danger {
+  background: hsl(0, 94%, 66%);
+}
+
+.btn-danger:hover {
+  color: hsl(0, 94%, 66%);
+  background-color: rgba(255, 235, 205, 0);
+  border: 1px solid hsl(0, 94%, 66%);
+}
+.blue-background {
+  height: 16rem;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  background-color: hsl(231, 69%, 60%);
+  border-radius: 50% 0 0 50%;
+  z-index: 1;
+}
+
+.img-container {
+  z-index: 2;
+
+  height: 20rem;
+  padding: 0px;
+}
+
+.svg {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+}
+.hero-card {
+  margin: 10px;
+}
+.hero-heading {
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+.hero-para {
+  font-size: 1rem;
+  text-align: left;
+  max-width: 80%;
+  font-weight: 400;
+  color: hsl(229, 8%, 60%);
+}
+
+.login-btn{
+  height: 2rem;
+  width: 8rem;
+  vertical-align: center;
+  padding-bottom: 30px;
+}
+// FEATURES STYLING
+
+.feature-header {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  padding: 10px;
+}
+
+.features-heading {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.features-para {
+  margin: auto;
+  max-width: 80%;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.feature-card-text{
+  text-align: left;
+}
+
+.links {
+  color: black;
+  margin: 5px;
+  padding: 5px;
+  border-bottom: 2px solid hsl(229, 8%, 60%);
+  font-size: 1.2rem;
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.navbar-text:hover {
+  color: hsl(0, 94%, 66%) !important;
+}
+
+.links:hover {
+  a {
+    color: hsl(0, 94%, 66%);
+  }
+  border-bottom: 4px solid hsl(0, 94%, 66%);
+}
+
+.btn-primary:hover {
+  background-color: white;
+  border: 1px solid hsl(231, 69%, 60%);
+  color: hsl(231, 69%, 60%);
+}
+
+.btn-light:hover {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+}
+
+.second {
+  height: 16rem;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  background-color: hsl(231, 69%, 60%);
+  border-radius: 0 50% 50% 0;
+  z-index: 1;
+}
+
+.more-info {
+  margin-left: 50px;
+}
+
+.features-art {
+  height: 85%;
+  width: 90%;
+}
+
+// EXTENSIONS TAB STYLES
+
+.card-wrapper {
+  min-height: 500px;
+  width: 96%;
+  margin: auto;
+  margin-top: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.cards {
+  border-radius: 4px;
+  box-shadow: 5px 5px 15px hsl(229, 8%, 60%);
+  height: 300px;
+  width: 200px;
+  margin: 20px;
+}
+
+.card1 {
+  align-self: flex-start;
+}
+
+.card3 {
+  align-self: flex-end;
+}
+
+.drop-box {
+  width: 400px;
+  background-color: red;
+}
+
+.box-head {
+  width: 400px;
+  background-color: red;
+}
+
+// FAQ SECTION
+
+.faq-q {
+  margin: 10px;
+  padding: 10px;
+  border-bottom: 2px solid hsl(229, 8%, 60%);
+  font-size: 0.9rem;
+
+  p {
+    font-size: 1rem;
+  }
+}
+
+.faq-q:nth-child(1) {
+  margin-top: 50px;
+  padding: 20px;
+  border-top: 2px solid hsl(229, 8%, 60%);
+}
+
+.questions:hover {
+  color: hsl(0, 94%, 66%);
+}
+.active-question {
+  color: hsl(0, 94%, 66%);
+}
+
+// FOOTER
+
+.footer-header {
+  color: white;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  padding: 10px;
+  background: hsl(231, 69%, 60%);
+}
+
+.footer-heading {
+  font-size: 1.5rem;
+  width: 80%;
+  margin: auto;
+}
+
+@media (min-width: 1024px) {
+  .container-1 {
+    height: 24rem;
+  }
+
+  .blue-background {
+    height: 18rem;
+  }
+
+  .img-container {
+    height: 22rem;
+  }
+
+  .second {
+    height: 18rem;
+  }
+
+  .features-heading {
+    font-size: 2rem;
+  }
+
+  .features-para {
+    font-size: 1rem;
+  }
+
+  .links {
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .card {
+    width: 250px;
+  }
+
+  .footer-heading {
+    font-size: 2rem;
+    width: 30%;
+    margin: auto;
+  }
+
+  .hero-heading {
+    font-size: 2rem;
+  }
+}
+
+
