@@ -250,8 +250,9 @@ var renderIndiHtml = (indiList) => {
 // api call to get film name
 
 const nameCall = (url) => {
+  let newUrl = url.replace("http","https");
   showLoader();
-  fetch(url)
+  fetch(newUrl)
     .then((res) => {
       return res.json();
     })
