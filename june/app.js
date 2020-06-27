@@ -243,16 +243,18 @@ var renderIndiHtml = (indiList) => {
   back();
   let films = indiList.films;
   for (let film of films) {
-    nameCall(film);
+    let filmurl = film.replace("http","https");
+    console.log(filmurl);
+    nameCall(filmurl);
   }
 };
 
 // api call to get film name
 
 const nameCall = (url) => {
-  let newUrl = url.replace("http","https");
+  
   showLoader();
-  fetch(newUrl)
+  fetch(url)
     .then((res) => {
       return res.json();
     })
