@@ -159,6 +159,7 @@ mainContainer.addEventListener("click", () => {
 });
 
 const getIndiPage = (indiURL) => {
+  indiURL = indiURL.replace("http","https");
   showLoader();
   fetch(indiURL)
     .then((res) => {
