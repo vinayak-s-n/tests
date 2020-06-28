@@ -48,7 +48,7 @@ const getPage = (pageNumber) => {
     })
     .then((res) => {
       let vehicleList = res.results;
-      console.log(vehicleList);
+
       renderVehicles(vehicleList);
       changehtml(heading, "List of Vehicles");
       show(heading);
@@ -56,8 +56,6 @@ const getPage = (pageNumber) => {
 
       currentPage = pageNumber;
       hideLoader();
-      // checkHash();
-      // checkpage();
     })
     .catch((err) => {
       alert(`Error:${err}`);
@@ -74,19 +72,21 @@ const renderVehicles = (vehicleList) => {
 
   for (vehicle of vehicleList) {
     let classI = "fas fa-heart fav-but add-fav-button";
-    let lists = [];
+    // let lists = [];
     lists = document.querySelectorAll(".in-fav");
-    console.log(lists);
-    if (lists.some(list.getAttribute("id") === vehicle.url)) {
-      classI = "fas fa-trash fav-but remove-fav-button";
-    }
-    // for (list of lists) {
-    //   if (list.getAttribute("id") === vehicle.url) {
-    //     classI = "fas fa-trash fav-but remove-fav-button";
-    //   } else {
-    //     classI = "fas fa-heart fav-but add-fav-button";
-    //   }
+
+    // let boolean = lists.some((list) => {
+    //   return list.getAttribute("id") === vehicle.url;
+    // });
+
+    // if (boolean) {
+    //   classI = "fas fa-trash fav-but remove-fav-button";
     // }
+    for (list of lists) {
+      if (list.getAttribute("id") === vehicle.url) {
+        classI = "fas fa-trash fav-but remove-fav-button";
+      }
+    }
 
     mainContainer.insertAdjacentHTML(
       "beforeend",
@@ -109,8 +109,7 @@ const renderVehicles = (vehicleList) => {
     `
     );
   }
-  // addFavFun();
-  // deleteFavFun();
+
   favourites();
 };
 
@@ -142,6 +141,9 @@ for (let page of allPages) {
 // this function loads when the app loads each time
 
 const init = () => {
+  if (window.location.hash === "#home") {
+    getPage(currentPage);
+  }
   getPage(1);
 
   activePage(1);
@@ -159,7 +161,7 @@ mainContainer.addEventListener("click", () => {
   if (clicked === true) {
     let vehicleCard = event.target.closest(".vehicle-card");
     indiURL = vehicleCard.getAttribute("id");
-    console.log(typeof indiURL);
+
     getIndiPage(indiURL);
   }
 });
@@ -172,7 +174,7 @@ const getIndiPage = (indiURL) => {
     })
     .then((res) => {
       let indiList = res;
-      console.log(indiList);
+
       renderIndiHtml(indiList);
       hideLoader();
     })
@@ -252,6 +254,17 @@ var renderIndiHtml = (indiList) => {
   }
 };
 
+window.addEventListener("hashchange", () => {
+  if (window.location.hash === "#home") {
+    getPage(currentPage);
+  } else if (window.location.hash.slice(0, 5) === "#indi") {
+    let url = window.location.hash.replace(
+      "#indi",
+      "http://swapi.dev/api/vehicles/"
+    );
+    getIndiPage(url);
+  }
+});
 // api call to get film name
 
 const nameCall = (url) => {
@@ -280,6 +293,7 @@ const filmRender = (name) => {
 
 const back = () => {
   document.querySelector(".back-button").addEventListener("click", () => {
+    window.location.hash = "#home";
     getPage(currentPage);
   });
 };
