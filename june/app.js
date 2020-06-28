@@ -73,15 +73,20 @@ const renderVehicles = (vehicleList) => {
   mainContainer.innerHTML = "";
 
   for (vehicle of vehicleList) {
-    let classI = "fas fa-heart add-fav-button";
-    let lists = document.querySelectorAll(".in-fav");
-    for (list of lists) {
-      if (list.getAttribute("id") === vehicle.url) {
-        classI = "fas fa-trash remove-fav-button";
-      } else {
-        classI = "fas fa-heart add-fav-button";
-      }
+    let classI = "fas fa-heart fav-but add-fav-button";
+    let lists = [];
+    lists = document.querySelectorAll(".in-fav");
+    console.log(lists);
+    if (lists.some(list.getAttribute("id") === vehicle.url)) {
+      classI = "fas fa-trash fav-but remove-fav-button";
     }
+    // for (list of lists) {
+    //   if (list.getAttribute("id") === vehicle.url) {
+    //     classI = "fas fa-trash fav-but remove-fav-button";
+    //   } else {
+    //     classI = "fas fa-heart fav-but add-fav-button";
+    //   }
+    // }
 
     mainContainer.insertAdjacentHTML(
       "beforeend",
@@ -104,8 +109,9 @@ const renderVehicles = (vehicleList) => {
     `
     );
   }
-  addFavFun();
-  deleteFavFun();
+  // addFavFun();
+  // deleteFavFun();
+  favourites();
 };
 
 // function tht adds and deletes active class on page numbers when they are slected accordingly
@@ -159,9 +165,8 @@ mainContainer.addEventListener("click", () => {
 });
 
 const getIndiPage = (indiURL) => {
-  let newindiURL = indiURL.replace("http","https");
   showLoader();
-  fetch(newindiURL)
+  fetch(indiURL)
     .then((res) => {
       return res.json();
     })
@@ -243,16 +248,13 @@ var renderIndiHtml = (indiList) => {
   back();
   let films = indiList.films;
   for (let film of films) {
-    let filmurl = film.replace("http","https");
-    console.log(filmurl);
-    nameCall(filmurl);
+    nameCall(film);
   }
 };
 
 // api call to get film name
 
 const nameCall = (url) => {
-  
   showLoader();
   fetch(url)
     .then((res) => {
@@ -294,25 +296,6 @@ document.querySelector(".favourites").addEventListener("mouseout", () => {
   hide(favList);
 });
 
-// addding event listeners to addd and deleet buttons
-
-var addFavFun = () => {
-  let addButtons = document.querySelectorAll(".add-fav-button");
-  console.log("add out");
-  for (let addButton of addButtons) {
-    console.log("add in");
-    addButton.addEventListener("click", (event) => {
-      event.target.className = "fas fa-trash remove-fav-button";
-      console.log("add in in");
-      deleteFavFun();
-      let parent = event.target.closest(".vehicle-card");
-      let name = parent.getAttribute("name");
-      let id = parent.getAttribute("id");
-      addFavToList(name, id);
-    });
-  }
-};
-
 // function that adds my favourites to the list
 
 const addFavToList = (name, id) => {
@@ -332,25 +315,27 @@ const addFavToList = (name, id) => {
   }
 };
 
-// Delte from fav funtion
-
-var deleteFavFun = () => {
-  console.log("delete out");
-  let delButtons = document.querySelectorAll(".remove-fav-button");
-  for (let delButton of delButtons) {
-    console.log("delete in");
-    delButton.addEventListener("click", (event) => {
-      console.log("delete in in");
-
-      event.target.className = "fas fa-heart add-fav-button";
-      addFavFun();
-      let parent = event.target.closest(".vehicle-card");
-      let id = parent.getAttribute("id");
-      let lists = document.querySelectorAll(".in-fav");
-      for (list of lists) {
-        let listId = list.getAttribute("id");
-        if (listId === id) {
-          list.remove();
+const favourites = () => {
+  let allButtons = document.querySelectorAll(".fav-but");
+  for (but of allButtons) {
+    but.addEventListener("click", (event) => {
+      let itsClass = event.target.getAttribute("class");
+      if (itsClass === "fas fa-heart fav-but add-fav-button") {
+        event.target.className = "fas fa-trash fav-but remove-fav-button";
+        let parent = event.target.closest(".vehicle-card");
+        let name = parent.getAttribute("name");
+        let id = parent.getAttribute("id");
+        addFavToList(name, id);
+      } else {
+        event.target.className = "fas fa-heart fav-but add-fav-button";
+        let parent = event.target.closest(".vehicle-card");
+        let id = parent.getAttribute("id");
+        let lists = document.querySelectorAll(".in-fav");
+        for (list of lists) {
+          let listId = list.getAttribute("id");
+          if (listId === id) {
+            list.remove();
+          }
         }
       }
     });
