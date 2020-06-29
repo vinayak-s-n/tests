@@ -168,7 +168,7 @@ mainContainer.addEventListener("click", () => {
 
 const getIndiPage = (indiURL) => {
   showLoader();
-  fetch(indiURL)
+  fetch(indiURL.replace("http", "https"))
     .then((res) => {
       return res.json();
     })
@@ -269,7 +269,7 @@ window.addEventListener("hashchange", () => {
 
 const nameCall = (url) => {
   showLoader();
-  fetch(url)
+  fetch(url.replace("http", "https"))
     .then((res) => {
       return res.json();
     })
